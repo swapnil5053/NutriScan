@@ -50,33 +50,6 @@ flowchart LR
 
 ---
 
-## Project Structure
-
-```text
-Img/
-├── Screenshot 2026-06-03 020546.png
-├── Screenshot 2026-06-03 020735.png
-├── Screenshot 2026-06-03 022136.png
-└── image.png
-
-assets/
-└── (internal assets)
-
-src/
-├── components/
-├── services/
-├── types.ts
-├── App.tsx
-└── main.tsx
-
-server.ts
-package.json
-TECHNICAL_ARCHITECTURE.md
-README.md
-```
-
----
-
 ## Core Capabilities
 
 ### Meal Understanding
@@ -224,30 +197,6 @@ Structured meal analysis containing:
 * Health score
 * Recommendations
 * Ingredient-level reasoning
-
----
-
-### POST `/api/coach/chat`
-
-Provides contextual coaching grounded in meal history and user goals.
-
-**Request**
-
-```json
-{
-  "message": "How can I increase my protein intake?",
-  "mealHistory": [],
-  "userGoals": {}
-}
-```
-
-**Response**
-
-```json
-{
-  "reply": "Focus on adding a protein source to breakfast..."
-}
-```
 
 ---
 
