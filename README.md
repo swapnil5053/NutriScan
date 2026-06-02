@@ -53,10 +53,14 @@ flowchart LR
 ## Project Structure
 
 ```text
+Img/
+├── Screenshot 2026-06-03 020546.png
+├── Screenshot 2026-06-03 020735.png
+├── Screenshot 2026-06-03 022136.png
+└── image.png
+
 assets/
-├── hero-screenshot.png
-├── history-screenshot.png
-└── coach-screenshot.png
+└── (internal assets)
 
 src/
 ├── components/
@@ -132,19 +136,23 @@ A conversational coaching system that:
 
 ### Meal Analysis
 
-![Meal Analysis](./assets/hero-screenshot.png)
+![Meal Analysis Upload](./Img/Screenshot%202026-06-03%20020546.png)
 
-*Image-based meal analysis with nutritional estimation, dietary flags, and contextual recommendations.*
+*Image upload and analysis processing screen.*
+
+![Meal Analysis Detail](./Img/image.png)
+
+*Detailed nutrition breakdown, composition analysis, and dietary insight.*
 
 ### Meal History
 
-![Meal History](./assets/history-screenshot.png)
+![Meal History](./Img/Screenshot%202026-06-03%20020735.png)
 
 *Chronological meal tracking focused on identifying recurring nutritional patterns.*
 
 ### Nutrition Coach
 
-![Nutrition Coach](./assets/coach-screenshot.png)
+![Nutrition Coach](./Img/Screenshot%202026-06-03%20022136.png)
 
 *Context-aware coaching grounded in historical meal behavior and user goals.*
 
