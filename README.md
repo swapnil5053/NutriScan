@@ -67,10 +67,10 @@ flowchart LR
 | Layer     | Technology          |
 | --------- | ------------------- |
 | Frontend  | React, Tailwind CSS |
-| Backend   | Node.js, Express    |
+| Backend   | Python, FastAPI     |
 | AI        | Gemini 2.5 Flash    |
 | Animation | Framer Motion       |
-| Language  | TypeScript          |
+| Language  | JavaScript, Python  |
 
 ---
 
@@ -80,15 +80,20 @@ flowchart LR
 git clone <repository-url>
 cd nutriscan
 
+# Install Python dependencies
+pip install -r requirements.txt
+
+# Install Node dependencies (for frontend build)
 npm install
-npm run dev
+
+# Create .env file
+echo "GEMINI_API_KEY=your_api_key" > .env
+
+# Run the application
+python server.py
 ```
 
-Create a `.env` file:
-
-```env
-GEMINI_API_KEY=your_api_key
-```
+Visit `http://localhost:3000` in your browser.
 
 ---
 
@@ -104,9 +109,6 @@ GEMINI_API_KEY=your_api_key
 
 ## Known Limitations
 
-* Nutrition values are estimates and depend on image quality.
-* Portion-size estimation remains an approximation.
-* Results should not be considered medical advice.
-
-```
-```
+- Nutrition values are estimates and depend on image quality.
+- Portion-size estimation remains an approximation.
+- Results should not be considered medical advice.

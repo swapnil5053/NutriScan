@@ -1,8 +1,0 @@
-{
-  "name": "NutriScan",
-  "description": "Resume-grade food and nutrition analyzer using Gemini Vision",
-  "requestFramePermissions": [],
-  "majorCapabilities": [
-    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
-  ]
-}

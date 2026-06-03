@@ -1,39 +1,29 @@
 import { useState, useRef, useEffect } from 'react';
-import { chatWithCoach } from '../services/api';
+import { chatWithCoach } from '../services/api.js';
 import { motion } from 'motion/react';
 
-interface Message {
-  role: 'user' | 'coach';
-  text: string;
-}
-
-interface CoachChatProps {
-  mealHistory: any[];
-  userGoals: any;
-}
-
-export function CoachChat({ mealHistory, userGoals }: CoachChatProps) {
-  const getInitialMessage = (history: any[]) => {
+export function CoachChat({ mealHistory, userGoals }) {
+  const getInitialMessage = (history) => {
     if (history.length === 0) {
       return "Log your first meal to start unlocking personalized dietary tactics and habit analysis.";
     } else if (history.length < 3) {
       return `I see you've logged ${history.length} meal${history.length > 1 ? 's' : ''}. Keep tracking to reveal deeper structural patterns in your macro distribution.`;
     }
-    
+
     const avgFiber = history.reduce((acc, m) => acc + (m.fiber || 0), 0) / history.length;
     if (avgFiber < 5) {
       return "You consistently miss fiber targets across your logged meals. Consider swapping out refined carbs for a fiber-rich alternative to close the gap.";
     }
-    
+
     return "I've analyzed your recent meals. Your macronutrient baseline is stabilizing. Would you like to review your dominant dietary patterns or set new tactical goals?";
   };
 
-  const [messages, setMessages] = useState<Message[]>([
+  const [messages, setMessages] = useState([
     { role: 'coach', text: getInitialMessage(mealHistory) }
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const scrollRef = useRef<HTMLDivElement>(null);
+  const scrollRef = useRef(null);
 
   useEffect(() => {
     setMessages(prev => {
@@ -62,7 +52,7 @@ export function CoachChat({ mealHistory, userGoals }: CoachChatProps) {
     try {
       const resp = await chatWithCoach(userMessage, mealHistory, userGoals);
       setMessages(prev => [...prev, { role: 'coach', text: resp.reply }]);
-    } catch (err: any) {
+    } catch (err) {
       setMessages(prev => [...prev, { role: 'coach', text: `Error: ${err.message}` }]);
     } finally {
       setIsLoading(false);

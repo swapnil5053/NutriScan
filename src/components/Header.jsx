@@ -14,7 +14,7 @@ export function Header() {
     if (typeof window !== 'undefined') {
       const stored = localStorage.getItem('theme');
       if (stored) return stored === 'dark';
-      return true; // Default to dark mode
+      return true;
     }
     return true;
   });
@@ -32,11 +32,11 @@ export function Header() {
   return (
     <header className="bg-[var(--surface-bg)] bg-opacity-90 backdrop-blur-sm h-16 flex items-center sticky top-0 z-50 border-b border-[var(--border-subtle)]">
       <div className="w-full mx-auto px-6 lg:px-12 flex items-center justify-between">
-        <button 
+        <button
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           className="flex items-center gap-3 hover:opacity-80 transition-opacity cursor-pointer text-left group"
         >
-          <motion.div 
+          <motion.div
             animate={{ rotate: 360 }}
             transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
             className="text-[var(--text-primary)]"
@@ -46,7 +46,7 @@ export function Header() {
           <h1 className="text-subheading m-0 tracking-tight font-display font-semibold transition-colors group-hover:text-[var(--text-muted)] dark:group-hover:text-white">NutriScan</h1>
         </button>
         <div className="flex items-center gap-6">
-          <button 
+          <button
             onClick={() => {
               document.getElementById('ai-coach-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }}
@@ -54,7 +54,7 @@ export function Header() {
           >
             AI Coach
           </button>
-          <button 
+          <button
             onClick={() => setDarkMode(!darkMode)}
             className="p-2 rounded-full hover:bg-[var(--surface-raised)] text-[var(--text-secondary)] transition-colors"
             aria-label="Toggle dark mode"

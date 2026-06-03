@@ -1,6 +1,4 @@
-import { GeminiAnalysisResult } from '../types';
-
-export async function analyzeFoodV2(imageFile: File, userContext: string = '', userProfile: any = null): Promise<GeminiAnalysisResult> {
+export async function analyzeFoodV2(imageFile, userContext = '', userProfile = null) {
   const formData = new FormData();
   formData.append('file', imageFile);
   if (userContext) {
@@ -9,19 +7,18 @@ export async function analyzeFoodV2(imageFile: File, userContext: string = '', u
   if (userProfile) {
     formData.append('user_profile', JSON.stringify(userProfile));
   }
-  
+
   const response = await fetch('/api/analyze-v2', {
     method: 'POST',
     body: formData,
   });
-  
+
   if (!response.ok) {
     let errMessage = `Error: ${response.status} ${response.statusText}`;
     try {
       const err = await response.json();
       errMessage = err.error || errMessage;
     } catch (e) {
-      // If it's HTML (like 413 Payload Too Large from Nginx)
       if (response.status === 413) {
         errMessage = 'Image file is too large. Please select an image under 4MB.';
       } else if (response.status === 504) {
@@ -30,8 +27,7 @@ export async function analyzeFoodV2(imageFile: File, userContext: string = '', u
     }
     throw new Error(errMessage);
   }
-  
-  // if ok is true but body is HTML, this will also throw, so we catch it
+
   try {
     return await response.json();
   } catch (e) {
@@ -39,7 +35,7 @@ export async function analyzeFoodV2(imageFile: File, userContext: string = '', u
   }
 }
 
-export async function chatWithCoach(message: string, mealHistory: any[] = [], userGoals: any = {}): Promise<{ reply: string }> {
+export async function chatWithCoach(message, mealHistory = [], userGoals = {}) {
   const response = await fetch('/api/coach/chat', {
     method: 'POST',
     headers: {
@@ -47,7 +43,7 @@ export async function chatWithCoach(message: string, mealHistory: any[] = [], us
     },
     body: JSON.stringify({ message, mealHistory, userGoals }),
   });
-  
+
   if (!response.ok) {
     let errMessage = `Error: ${response.status} ${response.statusText}`;
     try {
@@ -60,7 +56,7 @@ export async function chatWithCoach(message: string, mealHistory: any[] = [], us
     }
     throw new Error(errMessage);
   }
-  
+
   try {
     return await response.json();
   } catch (e) {
